@@ -1,6 +1,9 @@
 {
   "name": "shopmonkey",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.15.4"
+  },
   "description": "1984 Snacktruck",
   "main": "app.js",
   "scripts": {
