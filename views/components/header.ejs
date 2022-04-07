@@ -1,0 +1,8 @@
+<ul>
+    <% categories.forEach(function(category,index) { %>
+        <li class="<%= index == 0 ? 'is-active' : '' %>"><a data-switcher data-tab="<%= category._id %>">
+                <%= category.title %>
+            </a>
+        </li>
+    <% }); %>
+</ul>

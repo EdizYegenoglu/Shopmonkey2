@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('components/head'); %>
+
+<body id="orderPage">
+	<header>
+		<%- include('components/ordersHeader') %>
+	</header>
+
+	<section id="openOrder" class="flexOrderList">
+		<% openOrders.forEach(function(order) { %>
+			<div>
+		    	<div class="receipts">
+					<div class="receiptHeight">
+		    			<% order.order_products.forEach(function(product) { %>
+		    			    <% var curProduct=[] %>
+		    			    <% order.products.forEach(function(mainproduct) { %>
+		    			        <% if(mainproduct._id==product.product_id){ %>
+		    			            <% curProduct=mainproduct %>
+		    			        <% } %>
+		    			    <% }); %>
+		    			    <article data-id="<%= order._id %>">
+		    				    <span data-product-quantity>
+		    				            <%= product.quantity %>x
+		    				    </span>
+		    				    <ul>
+		    				        <li data-product-title>
+		    				    	    <%= curProduct.title %>
+		    				        </li>
+		    				        <% if(product.extra_price> 0){ %>
+		    				            <li>
+		    				    	        + <%= product.extra_title %>
+		    				            </li>
+		    				        <% } %>
+		    				    </ul>
+		    				    <input data-product-price type="number" value="<%= (curProduct.price * product.quantity) +
+            	    	            (parseFloat(product.extra_price)*product.quantity)  %>" class="price" />
+		    				    <p data-product-price>
+		    				        <%= money((curProduct.price * product.quantity) +
+            	    	            (parseFloat(product.extra_price)*product.quantity)) %>
+		   				    </p>
+		    			    </article>
+		    			<% }); %>
+					</div>
+		    	</div>
+				<form action="/done/<%= order._id %>" method="POST" class="totalDisplay">
+					<p class="total">Totaal: 
+						<span>
+							<%= money(order.total_price) %>
+						</span>
+					</p>
+					<button>
+						<p>Done</p>
+						<img src="../../static/images/arrow.png" alt="">
+					</button>
+				</form>
+			</div>
+		<% }) %>
+	</section>
+
+	<section id="closedOrder" class="flexOrderList hideList">
+		<% closedOrders.forEach(function(order) { %>
+			<div>
+		    	<div class="receipts">
+					<div class="receiptHeight">
+		    		<% order.order_products.forEach(function(product) { %>
+		    		    <% var curProduct=[] %>
+		    		    <% order.products.forEach(function(mainproduct) { %>
+		    		        <% if(mainproduct._id==product.product_id){ %>
+		    		            <% curProduct=mainproduct %>
+		    		        <% } %>
+		    		    <% }); %>
+		    		    <article data-id="<%= order._id %>">
+		    			    <span data-product-quantity>
+		    				    <%= product.quantity %>x
+		    			    </span>
+		    			    <ul>
+		    				    <li data-product-title>
+		    				    	<%= curProduct.title %>
+		    				    </li>
+		    				    <% if(product.extra_price > 0){ %>
+		    				        <li>
+		    					        + <%= product.extra_title %>
+		    				        </li>
+		    				    <% } %>
+		    			    </ul>
+		    			    <input data-product-price type="number" value="<%= (curProduct.price * product.quantity) +
+            	                (parseFloat(product.extra_price)*product.quantity)  %>" class="price" />
+		    			    <p data-product-price>
+		    				    <%= money((curProduct.price * product.quantity) +
+            	                (parseFloat(product.extra_price)*product.quantity)) %>
+		    			    </p>
+		    		    </article>
+		    		<% }); %>
+					</div>
+				</div>
+		    	<p class="total totalDisplayClosed">Totaal: 
+            	    <span>
+		    		    <%= money(order.total_price) %>
+		    		</span>
+            	</p>
+		    </div>
+		<% }) %>
+	</section>
+
+	<section class="toOrderPage">
+		<a href="/">
+			<div>
+				<svg xmlns="http://www.w3.org/2000/svg" width="53.624" height="45.581" viewBox="0 0 53.624 45.581">
+					<path id="Icon_material-home" data-name="Icon material-home" d="M24.45,50.081V33.993H35.175V50.081H48.581V28.631h8.044L29.812,4.5,3,28.631h8.044v21.45Z" transform="translate(-3 -4.5)" fill="#171836"/>
+				  </svg>				  
+			</div>
+		</a>
+	</section>
+
+	<section class="export hideList">
+		<form action="/export" method="POST">
+			<input type="submit" value="Export">
+		</form>
+	</section>
+
+	<section class="logout">
+		<form action="/logout" method="POST">
+			<input type="submit" value="Logout">
+		</form>
+	</section>
+
+	<%- include('components/alert') %>
+
+	<script src="../static/script/main.js"></script>
+
+</body>
+
+</html>

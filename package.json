@@ -1,0 +1,40 @@
+{
+  "name": "shopmonkey",
+  "version": "1.0.0",
+  "description": "1984 Snacktruck",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "sass": "node-sass --watch static/stylesheet/sass -o static/stylesheet/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdizYegenoglu/Shopmonkey.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdizYegenoglu/Shopmonkey/issues"
+  },
+  "homepage": "https://github.com/EdizYegenoglu/Shopmonkey#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^3.4.1",
+    "camelcase": "^6.2.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.10.0",
+    "fs": "^0.0.1-security",
+    "jquery": "^3.6.0",
+    "json2csv": "^5.0.6",
+    "mongodb": "^3.6.6",
+    "node-sass": "^5.0.0",
+    "sass": "^1.32.8"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "nodemon": "^2.0.7"
+  }
+}

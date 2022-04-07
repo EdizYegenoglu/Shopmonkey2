@@ -1,0 +1,50 @@
+<h1>Kassabon</h1>
+<div>
+    <% order.order_products.forEach(function(product) { %>
+        <% var curProduct=[] %>
+        <% order.products.forEach(function(mainproduct) { %>
+            <% if(mainproduct._id==product.product_id){ %>
+                <% curProduct=mainproduct %>
+            <% } %>
+        <% }); %>
+        <article data-id="<%= order._id %>">
+            <span data-product-quantity>
+                <%= product.quantity %>x
+            </span>
+            <ul>
+                <li data-product-title>
+                    <%= curProduct.title %>
+                </li>
+                <% if(product.extra_price> 0){ %>
+                    <li>
+                        + <%= product.extra_title %>
+                    </li>
+                <% } %>
+            </ul>
+            <input data-product-price type="number" value="<%= (curProduct.price * product.quantity) +
+                (parseFloat(product.extra_price)*product.quantity)  %>" class="price" />
+            <p class="decimal" data-product-price>
+                <%= money((curProduct.price * product.quantity) +
+                    (parseFloat(product.extra_price)*product.quantity)) %>
+            </p>
+            <form action="/delete/<%= product._id %>" method="POST">
+                <button>
+                    <img src="../../static/images/close.png" alt="">
+                </button>
+            </form>
+        </article>
+    <% }); %>
+</div>
+<div>
+    <form action="/order" method="POST" onsubmit="return confirm('Confirm payment')">
+        <input type="hidden" value="" name='total_price' class="totalPrice" />
+        <p class="total">Totaal:  
+            <span class="totalPrice"></span>
+        </p>
+        <input class="pin" type="submit" name="payment" value="Pin">
+        <img src="../../static/images/arrow.png" alt="">
+
+        <input class="cash" type="submit" name="payment"s value="Cash">
+        <img src="../../static/images/arrow.png" alt="">
+        </form>
+</div>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('components/head'); %>
+
+    <body id="mainPage">
+        <%- include('components/alert') %>
+
+        <header>
+            <%- include('components/header') %>
+        </header>
+
+        <section>
+            <% categories.forEach(function(category, index) { %>
+                <div class="<%=index==0 ? 'is-active' : '' %>" data-page="<%= category._id %>">
+                    <% category.products.forEach(function(product, index) { %>
+                        <article class="order col-sm-6 col-md-4 col-lg-4" data-id="<%= product._id %>"
+                            data-product="<%= JSON.stringify(product) %>">
+                            <img src="<%= product.image %>" data-product-image>
+                            <h2 data-product-title>
+                                <%= product.title %>
+                            </h2>
+                            <p data-product-price>
+                                <%= money(product.price) %>
+                            </p>
+                        </article>
+                    <% }); %>
+                </div>
+            <% }); %>
+        </section>
+
+        <section class="popupDisabled" id="productPopup">
+            <div class="popupScreen">
+                <button class="closePopupButton">
+                    <%- include('../static/icons/close') %>
+                </button>
+                <div class="popupHeader">
+                    <img class="smallPicture" src="" alt="" data-product-image>
+                    <h2 data-product-title></h2>
+                </div>
+                <form action="/add" method="POST">
+                    <input class="popupProductId" type="hidden" name="product_id" value="" data-product-id>
+                    <input type="hidden" name="order_id" value="<%= order._id %>" >
+                    <%- include('components/counter') %>
+                </form>
+            </div>
+        </section>
+
+        <section class="toOrderPage">
+            <a href="orders">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36.113" height="48.15" viewBox="0 0 36.113 48.15">
+                        <path id="Icon_awesome-clipboard-list" data-name="Icon awesome-clipboard-list"
+                            d="M31.6,6.019H24.075a6.019,6.019,0,0,0-12.038,0H4.514A4.515,4.515,0,0,0,0,10.533v33.1A4.515,4.515,0,0,0,4.514,48.15H31.6a4.515,4.515,0,0,0,4.514-4.514v-33.1A4.515,4.515,0,0,0,31.6,6.019ZM9.028,39.875a2.257,2.257,0,1,1,2.257-2.257A2.252,2.252,0,0,1,9.028,39.875Zm0-9.028a2.257,2.257,0,1,1,2.257-2.257A2.252,2.252,0,0,1,9.028,30.846Zm0-9.028a2.257,2.257,0,1,1,2.257-2.257A2.252,2.252,0,0,1,9.028,21.818ZM18.056,3.762A2.257,2.257,0,1,1,15.8,6.019,2.252,2.252,0,0,1,18.056,3.762ZM30.094,38.37a.755.755,0,0,1-.752.752H15.8a.755.755,0,0,1-.752-.752v-1.5a.755.755,0,0,1,.752-.752H29.342a.755.755,0,0,1,.752.752Zm0-9.028a.755.755,0,0,1-.752.752H15.8a.755.755,0,0,1-.752-.752v-1.5a.755.755,0,0,1,.752-.752H29.342a.755.755,0,0,1,.752.752Zm0-9.028a.755.755,0,0,1-.752.752H15.8a.755.755,0,0,1-.752-.752v-1.5a.755.755,0,0,1,.752-.752H29.342a.755.755,0,0,1,.752.752Z"
+                            fill="#171836" />
+                    </svg>
+                </div>
+                <span>
+                    <%= openOrder %>
+                </span>
+            </a>
+        </section>
+
+        <aside class="closedReceipt">
+            <%- include('components/receipt') %>
+        </aside>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+        </script>
+        <script src="../static/script/main.js"></script>
+    </body>
+</html>

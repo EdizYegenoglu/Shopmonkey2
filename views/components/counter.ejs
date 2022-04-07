@@ -1,0 +1,119 @@
+<div class="options">
+    <fieldset class="quantityFieldset">
+        <label for="aantal">Aantal:</label>
+        <div class="quantity">
+            <input name="quantity" type="number" value="1" min="1" max="100">
+            <div>
+                <button type="button" data-way="up">
+                    <%- include('../../static/icons/add') %>
+                </button>
+                <button type="button" data-way="down">
+                    <%- include('../../static/icons/delete') %>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="sauzen">
+        <div class="optie1">
+        <label class="sausLabel" for="">Sauzen:</label>
+        <div class="none">
+            <input id="geenSaus" type="radio" name="extra_title" value="0" checked="checked">
+            <label for="geenSaus">
+                <div class="infoChoices">
+                    <h4>
+                        geen saus
+                    </h4>
+                </div>
+            </label>
+        </div>
+        <input type="hidden" name="extra_price" value="0">
+        <div class="sausList">
+            <% sausjes.forEach(function(sausje) { %>
+                <input id="<%= sausje.title %>" data-price="<%= sausje.price %>" type="radio" name="extra_title"
+                    value="<%= sausje.title%>">
+                <label for="<%= sausje.title %>" class="sausjes">
+                    <img src="<%= sausje.image %>" alt="">
+                    <div class="infoChoices">
+                        <h4>
+                            <%= sausje.title %>
+                        </h4>
+                        <p>
+                            <%= money(sausje.price) %>
+                        </p>
+                    </div>
+                </label>
+            <% }); %>
+        </div>
+        </div>
+
+        <div class="optie2 sauzenNo">
+            <label class="sausLabel" for="">Sauzen:</label>
+            <div class="none">
+                <input id="geenSausGroot" type="radio" name="extra_title" value="0" checked="checked">
+                <label for="geenSausGroot">
+                    <div class="infoChoices">
+                        <h4>
+                            geen saus
+                        </h4>
+                    </div>
+                </label>
+            </div>
+            <!-- <input type="hidden" name="extra_price" value="0"> -->
+            <div class="sausList">
+                <% sausjesGroot.forEach(function(sausjeGroot) { %>
+                    <input id="<%= sausjeGroot.title %>" data-price="<%= sausjeGroot.price %>" type="radio" name="extra_title"
+                        value="<%= sausjeGroot.title %>">
+                    <label for="<%= sausjeGroot.title %>" class="sausjes">
+                        <img src="<%= sausjeGroot.image %>" alt="">
+                        <div class="infoChoices">
+                            <h4>
+                                <%= sausjeGroot.title %>
+                            </h4>
+                            <p>
+                                <%= money(sausjeGroot.price) %>
+                            </p>
+                        </div>
+                    </label>
+                <% }); %>
+            </div>
+        </div>
+
+        <div class="optie3 sauzenNo">
+
+            <label class="sausLabel" for="">Sauzen:</label>
+            <div class="none">
+                <input id="geenSausSnack" type="radio" name="extra_title" value="0" checked="checked">
+                <label for="geenSausSnack">
+                    <div class="infoChoices">
+                        <h4>
+                            geen saus
+                        </h4>
+                    </div>
+                </label>
+            </div>
+            <!-- <input type="hidden" name="extra_price" value="0"> -->
+            <div class="sausList">
+                <% extraSnack.forEach(function(extraS) { %>
+                    <input id="<%= extraS.title %>" data-price="<%= extraS.price %>" type="radio" name="extra_title"
+                        value="<%= extraS.title %>">
+                    <label for="<%= extraS.title %>" class="sausjes">
+                        <img src="<%= extraS.image %>" alt="">
+                        <div class="infoChoices">
+                            <h4>
+                                <%= extraS.title %>
+                            </h4>
+                            <p>
+                                <%= money(extraS.price) %>
+                            </p>
+                        </div>
+                    </label>
+                <% }); %>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<button class="addToCart">
+    <%- include('../../static/icons/add') %>
+        Toevoegen
+</button>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('components/head'); %>
+
+<body id="login">
+    <section>
+        <h1>login</h1>
+  
+        <form method="POST" action="/login" id="login">
+            <input type="text" id="username" name="username" autocomplete="off"
+                placeholder="username">
+            <input type="password" id="password"  name="password" autocomplete="off"
+                placeholder="password">
+            <input class="submitLogin" type="submit">
+        </form>
+    </section>
+</body>
+
+</html>
