@@ -164,11 +164,20 @@ ul {
       width: 240px;
       height: 240px;
       cursor: pointer; }
-      #mainPage section:first-of-type div article img {
+      /* #mainPage section:first-of-type div article img {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        height: 150px; }
+        height: 150px; } */
+        #mainPage section:first-of-type div article img {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          height: 120px;
+          margin-top: 15px;
+          max-height: 100%;
+          max-width: 100%;
+      }
       #mainPage section:first-of-type div article h2 {
         text-align: center;
         font-weight: 600;
@@ -665,4 +674,7 @@ border-radius: 10px;
 display: flex; }
 .bitter input{
   display: none;} */
+.optie3 .sausList{
+  width: 1500px;
+}
  
