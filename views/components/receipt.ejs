@@ -38,6 +38,7 @@
 <div>
     <form action="/order" method="POST" onsubmit="return confirm('Confirm payment')">
         <input type="hidden" value="" name='total_price' class="totalPrice" />
+        <input type="hidden" value="<%= counting %> " name='count' class="counting"/>
         <p class="total">Totaal:  
             <span class="totalPrice"></span>
         </p>

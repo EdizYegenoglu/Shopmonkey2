@@ -175,6 +175,9 @@ app.get('/', redirectLogin, async (req, res) => {
 			}
 		]
 	).toArray()
+
+	const counting = await db.collection('orders').find().toArray();
+
     res.render('index', {
 		money,
 		sausjes: sausjes,
@@ -188,6 +191,7 @@ app.get('/', redirectLogin, async (req, res) => {
 		categories: categories,
 		order: orders[0],
 		openOrder: openOrder.length,
+		counting: counting.length
 	})	
 });
 
@@ -222,11 +226,13 @@ app.get('/', redirectLogin, async (req, res) => {
 		{paid: 0,
 		total_price: 0,
 		ts: 0,
+		count: 0,
 		payment: String},
-		{$set:{ paid: 1, total_price: (req.body.total_price),ts: new Date(), payment: payment}},
+		{$set:{ paid: 1, total_price: (req.body.total_price),ts: new Date(), payment: payment, count: (req.body.count)}},
 	)
 	var afrekenen =  await db.collection('orders').insertOne({
 		id: 0,
+		count: 0,
 		done: 0,
 		paid: 0,
 		export: 0,
@@ -281,7 +287,7 @@ app.get('/orders', redirectLogin, async (req, res) => {
 			}
 		]
 	).toArray();
-
+	
 	const closedOrders = await db.collection('orders').aggregate(
 		[
 			{ 
@@ -320,7 +326,7 @@ app.get('/orders', redirectLogin, async (req, res) => {
 		money,
 		products: products, 
 		openOrders: openOrders,
-		closedOrders: closedOrders
+		closedOrders: closedOrders,
 	})	
 });
 
@@ -428,7 +434,7 @@ var exported = 0;
 })
 
 app.get('/export', function(req,res) {
-	res.download('static/order.csv'), function(err){
+	res.download('order.csv'), function(err){
 		console.log(err)
 	}
 })
