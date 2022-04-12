@@ -25,17 +25,9 @@ function SwitchPage (page_id) {
         const sausOptie3 = $('.optie3');
 
         // data tab friet
-        if (next_page.innerHTML.indexOf('Friet') != -1){
+        if (next_page.innerHTML.indexOf('Tosti') != -1){
             sausOptie.removeClass('sauzenNo');
         }
-        // data tab snacks 
-        else if(next_page.innerHTML.indexOf('Frikandel') != -1){
-            sausOptie.removeClass('sauzenNo')
-        } 
-        // else if(next_page.innerHTML.indexOf('Saus Klein') != -1){
-        //     sausOptie.removeClass('sauzenNo');
-        //     // sausOptie3.addClass('sauzenNo');
-        // }
         else{
         sausOptie.addClass('sauzenNo');
         }
@@ -57,38 +49,23 @@ selectProduct.on('click', function(){
     $('body').addClass('disableScroll');
     console.log(data.title);
     
-    if(data.title == 'Friet Klein' || data.title == 'Friet Middel'){
+    if(data.title == 'Bittergarnituur 6 STK' || data.title == 'Bittergarnituur 10 STK' || data.title == 'Bitterballen 6 STK' || data.title == 'Bitterballen 10 STK'){
         $('.optie1').removeClass('sauzenNo');
         $('.optie2').addClass('sauzenNo');
         $('.optie3').addClass('sauzenNo');
     }
-    else if(data.title == 'Friet Groot'){
-        // $('.sauzen').removeClass('sauzenNo');
+    else if(data.title == 'Hotdogs' || data.title == 'Tosti'){
         $('.optie1').addClass('sauzenNo');
         $('.optie2').removeClass('sauzenNo');
-    } else if(data.title == 'huzaren slaatje'){
-        $('.optie1').addClass('sauzenNo');
-    } 
-    // else if(data.title == 'Saus Klein'){
-    //     $('.optie1').removeClass('sauzenNo');
-    // } else if(data.title == 'Saus Groot'){
-    //     $('.optie1').addClass('sauzenNo');
-    //     $('.optie2').removeClass('sauzenNo');
-
-    // }
-    else if(data.title == 'Bolletje'){
-        $('.optie1').addClass('sauzenNo');
+        $('.optie3').addClass('sauzenNo');
     }
-    else if(data.title == 'Frikandel'){
-        $('.optie3').removeClass('sauzenNo');
+    else if(data.title == 'Kaasstengels 6 STK' || data.title == 'Kaasstengels 10 STK'){
         $('.optie1').addClass('sauzenNo');
         $('.optie2').addClass('sauzenNo');
+        $('.optie3').removeClass('sauzenNo');
     }
-    // if(data.title == 'Kroket rundvlees' || data.title == 'kalfskroket'){
-    //     $('.optie1').removeClass('sauzenNo');
-    // }
     else{
-        $('.optie1').removeClass('sauzenNo');
+        $('.optie1').addClass('sauzenNo');
         $('.optie2').addClass('sauzenNo');
         $('.optie3').addClass('sauzenNo');
     }
