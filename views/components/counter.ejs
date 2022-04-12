@@ -46,6 +46,74 @@
         </div>
         </div>
     <!-- </fieldset> -->
+    <!-- <fieldset class="sauzen"> -->
+        <div class="optie2 sauzenNo">
+            <label class="sausLabel" for="">Sauzen:</label>
+            <div class="none">
+                <input id="geenSausGroot" type="radio" name="extra_title" value="0" checked="checked">
+                <label for="geenSausGroot">
+                    <div class="infoChoices">
+                        <h4>
+                            geen saus
+                        </h4>
+                    </div>
+                </label>
+            </div>
+            <!-- <input type="hidden" name="extra_price" value="0"> -->
+            
+            <div class="sausList">
+                <% extraKaas.forEach(function(stengel) { %>
+                    <input id="<%= stengel.title %>" data-price="<%= stengel.price %>" type="radio" name="extra_title"
+                        value="<%= stengel.title %>">
+                    <label for="<%= stengel.title %>" class="sausjes">
+                        <img src="<%= stengel.image %>" alt="">
+                        <div class="infoChoices">
+                            <h4>
+                                <%= stengel.title %>
+                            </h4>
+                            <p>
+                                <%= money(stengel.price) %>
+                            </p>
+                        </div>
+                    </label>
+                <% }); %>
+            </div>
+
+        </div>
+        <!-- </fieldset> -->
+    <!-- <fieldset class="sauzen"> -->
+        <div class="optie3 sauzenNo">
+            <label class="sausLabel" for="">Sauzen:</label>
+            <div class="none">
+                <input id="geenSausSnack" type="radio" name="extra_title" value="0" checked="checked">
+                <label for="geenSausSnack">
+                    <div class="infoChoices">
+                        <h4>
+                            geen saus
+                        </h4>
+                    </div>
+                </label>
+            </div>
+            <!-- <input type="hidden" name="extra_price" value="0"> -->
+            <div class="sausList">
+                <% extraSnack.forEach(function(extraS) { %>
+                    <input id="<%= extraS.title %>" data-price="<%= extraS.price %>" type="radio" name="extra_title"
+                        value="<%= extraS.title %>">
+                    <label for="<%= extraS.title %>" class="sausjes">
+                        <img src="<%= extraS.image %>" alt="">
+                        <div class="infoChoices">
+                            <h4>
+                                <%= extraS.title %>
+                            </h4>
+                            <p>
+                                <%= money(extraS.price) %>
+                            </p>
+                        </div>
+                    </label>
+                <% }); %>
+            </div>
+        </div>
+
     </fieldset>
 </div>
 

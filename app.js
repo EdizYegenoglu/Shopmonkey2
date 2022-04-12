@@ -102,11 +102,8 @@ req.session.destroy(function(err) {
 
 app.get('/', redirectLogin, async (req, res) => {
 	const sausjes = await db.collection('extra').find().toArray();
-	// const sausjesGroot = await db.collection('extraGroot').find().toArray();
-	// const extraSnack = await db.collection('extraSnack').find().toArray();
-	// const aantalStengel = await db.collection('extraStengel').find().toArray();
-	// const aantalBitter = await db.collection('extraBitter').find().toArray();
-	// const aantalNugget = await db.collection('extraNugget').find().toArray();
+	const extraKaas = await db.collection('extraKaas').find().toArray();
+	const extraSnack = await db.collection('extraSnack').find().toArray();
 	const products = await db.collection('products').find().toArray();
 	const productCategories = await db.collection('product-categories').find().toArray();
 	const orders = await db.collection('orders').aggregate(
@@ -181,11 +178,8 @@ app.get('/', redirectLogin, async (req, res) => {
     res.render('index', {
 		money,
 		sausjes: sausjes,
-		// sausjesGroot: sausjesGroot,
-		// extraSnack: extraSnack,
-		// bitter: aantalBitter,
-		// nugget: aantalNugget,
-		// stengel: aantalStengel,
+		extraKaas: extraKaas,
+		extraSnack: extraSnack,
 		products: products, 
 		productCategories: productCategories,
 		categories: categories,

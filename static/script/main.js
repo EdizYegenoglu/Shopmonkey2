@@ -54,12 +54,12 @@ selectProduct.on('click', function(){
         $('.optie2').addClass('sauzenNo');
         $('.optie3').addClass('sauzenNo');
     }
-    else if(data.title == 'Hotdogs' || data.title == 'Tosti'){
+    else if(data.title == 'Kaasstengels 6 STK' || data.title == 'Kaasstengels 10 STK'){
         $('.optie1').addClass('sauzenNo');
         $('.optie2').removeClass('sauzenNo');
         $('.optie3').addClass('sauzenNo');
     }
-    else if(data.title == 'Kaasstengels 6 STK' || data.title == 'Kaasstengels 10 STK'){
+    else if(data.title == 'Hotdogs' || data.title == 'Tosti'){
         $('.optie1').addClass('sauzenNo');
         $('.optie2').addClass('sauzenNo');
         $('.optie3').removeClass('sauzenNo');
